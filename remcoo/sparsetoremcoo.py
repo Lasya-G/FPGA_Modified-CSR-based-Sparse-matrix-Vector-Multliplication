@@ -1,36 +1,57 @@
 import numpy as np
 
-def sparse_to_recoo(matrix_file, vector_file, rid_file, value_file, xd_file):
-    # Read matrix and vector from files
-    matrix_a = np.loadtxt(matrix_file).reshape((M, N))
-    vector_x = np.loadtxt(vector_file)
+with open("matrix_hex.txt") as a:
+    a1 = a.readlines()
+with open("vector_hex.txt") as x:
+    x1 =x.readlines()
 
-    rid = []
-    value = []
-    xd = []
+f1 = open("rid.txt", "w")
+f2 = open("value.txt","w")
+f3 = open("xd.txt", "w")
 
-    # Convert sparse matrix to coordinate format
-    for i in range(M):
-        for j in range(N):
-            if matrix_a[i, j] != 0:
-                rid.append(i)
-                value.append(int(matrix_a[i, j]))
-                xd.append(int(vector_x[j]))
+x1 = np.array(x1)
+a1 = np.array(a1)
 
-    # Write rid, value, and xd to files
-    np.savetxt(rid_file, rid, fmt='%d')
-    np.savetxt(value_file, value, fmt='%d')
-    np.savetxt(xd_file, xd, fmt='%d')
+for i in range(len(a1)):
+    if(i != len(a1) - 1):
+        a1[i] = a1[i][:-1]
 
-if __name__ == "__main__":
-    M = 5
-    N = 5
 
-    # Assuming matrix_hex.txt and vector_hex.txt are your input files
-    matrix_file = "matrix_hex.txt"
-    vector_file = "vector_hex.txt"
-    rid_file = "rid.txt"
-    value_file = "value.txt"
-    xd_file = "xd.txt"
+for i in range(len(x1)):
+    x1[i] = x1[i][:-1]
+#print(len(a1))
+#print(len(x1))
+n = len(x1)
+m = len(a1)//n
+arr_a =a1.reshape(m, n)
+#print(x1)
+#print(arr_a)
 
-    sparse_to_recoo(matrix_file, vector_file, rid_file, value_file, xd_file)
+rid, value, xd = [], [], []
+
+
+for i in range(m):
+    for j in range(n):
+        if (arr_a[i, j] != '00000000'):
+            rid.append(i)
+            f1.write(str(i))
+            f1.write("\n")
+            value.append(arr_a[i, j])
+            f2.write(arr_a[i][j])
+            f2.write("\n")
+            xd.append(x1[j])
+            f3.write(x1[j])
+            f3.write("\n")
+
+
+
+print(rid, end = "\n")
+print(value, end = "\n")
+print(xd, end = "\n")
+
+
+
+
+
+
+
