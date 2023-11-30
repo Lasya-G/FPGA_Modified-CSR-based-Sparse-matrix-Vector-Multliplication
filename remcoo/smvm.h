@@ -7,7 +7,7 @@ using namespace std;
 // Uncomment this line to compare TB vs HW C-model and/or RTL
 #define HW_COSIM
 
-#define nnz 11
+#define nnz 8
 #define m 5
 
 
