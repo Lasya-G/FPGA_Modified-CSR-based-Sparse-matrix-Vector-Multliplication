@@ -2,7 +2,7 @@
 #include "smvm.h"
 
 //// Constants
-//const int nnz = 11;  // Adjust as needed
+//const int nnz = 8;  // Adjust as needed
 //const int m = 5;    // Adjust as needed
 
 //// Data type for matrix and vector values
@@ -16,9 +16,9 @@ void writeoutput(volatile data_t *in, volatile data_t *out);
 
 int main() {
     // Test data
-    volatile int rid[nnz] = {0, 0, 0, 1, 1,2,2,2,3,4,4};
-    volatile data_t value[nnz] = {1.23,3.34,9.91,2.67,4.89,5.91,6.31,7.27,8.83,9.03,11.02};
-    volatile data_t xd[nnz] = {0.03,1.21,3.29,1.21,0.87,1.21,0.87,3.29,3.29,3.29,0.81};
+    volatile int rid[nnz] = {0, 0,2,2,3,3,4,4};
+    volatile data_t value[nnz] = {2,1,1,4,2,1,2,1};
+    volatile data_t xd[nnz] = {0,2,2,1,1,2,1,2};
     volatile data_t y[m];
 
     // Call the SpMV function
